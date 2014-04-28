@@ -1,0 +1,8 @@
+%h1 Home#index
+%p Find me in app/views/home/index.html.haml
+- if current_user
+  = current_user.full_name
+  = link_to "Logout", logout_path, class: "btn btn-info", method: :delete
+- else
+  = link_to "Sign In", login_path, class: "btn btn-info"
+  = link_to "Sign Up", signup_path, class: "btn btn-primary"
