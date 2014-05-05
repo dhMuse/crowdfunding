@@ -11,10 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140428175546) do
+ActiveRecord::Schema.define(version: 20140502181205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campaigns", force: true do |t|
+    t.string   "title"
+    t.text     "details"
+    t.integer  "target"
+    t.datetime "end_date"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state"
+    t.string   "slug"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
+  end
+
+  add_index "campaigns", ["slug"], name: "index_campaigns_on_slug", using: :btree
+  add_index "campaigns", ["state"], name: "index_campaigns_on_state", using: :btree
+  add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+
+  create_table "discussions", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id", using: :btree
 
   create_table "profiles", force: true do |t|
     t.string   "first_name"
@@ -23,9 +62,22 @@ ActiveRecord::Schema.define(version: 20140428175546) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "reward_levels", force: true do |t|
+    t.string   "title"
+    t.text     "details"
+    t.integer  "amount"
+    t.integer  "campaign_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reward_levels", ["campaign_id"], name: "index_reward_levels_on_campaign_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

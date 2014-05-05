@@ -1,5 +1,26 @@
 Rails.application.routes.draw do
 
+  # get 'nearby_campaigns/index'
+  resources :nearby_campaigns, only: :index
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :campaigns
+    end
+    # scope module: :url
+    #   resources :campaigns
+    # end
+  end
+
+  resources :discussions do
+    resources :comments
+  end
+
+  resources :campaigns do
+    resources :comments
+    patch :publish, on: :member
+  end
+
   get "signup" => "users#new", as: :signup
   get "login" => "sessions#new", as: :login
   delete "logout" => "sessions#destroy", as: :logout

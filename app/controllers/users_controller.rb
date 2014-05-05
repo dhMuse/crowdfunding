@@ -8,12 +8,16 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		if @user.save
-			session[:user_id] = @user.id
-			redirect_to root_path, notice: "Thanks for registering"
-		else
-			# @user.build_profile unless @user.profile.present?
-			render :new
+		respond_to do |format|
+			if @user.save
+				session[:user_id] = @user.id
+				format.html {redirect_to root_path, notice: "Thanks for registering"}
+				format.js {render}
+			else
+				# @user.build_profile unless @user.profile.present?
+				format.html {render :new}
+				format.js {render js: "alert('ERROR');"}
+			end
 		end
 	end
 

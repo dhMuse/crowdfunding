@@ -1,0 +1,8 @@
+= will_paginate @campaigns, renderer: BootstrapPagination::Rails, remote: true
+- @campaigns.each do |campaign|
+  - campaign_dec = campaign.decorate
+  .well
+    %h4= campaign.title
+    %p= campaign_dec.short_details
+    %p= campaign_dec.ajax_view_link
+= will_paginate @campaigns, renderer: BootstrapPagination::Rails, remote: true

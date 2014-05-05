@@ -14,6 +14,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+gem 'friendly_id', '~>5.0.0'
+
+gem 'state_machine'
+
 gem 'haml-rails'
 
 gem 'quiet_assets'
@@ -22,7 +26,42 @@ gem 'thin'
 
 gem 'bootstrap-sass'
 
+gem 'draper'
+
+gem 'virtus'
+
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+
+# gem "therubyracer"
+
+# gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+
+# gem "twitter-bootstrap-rails"
+
+gem 'will_paginate-bootstrap'
+
 gem 'simple_form', github: "plataformatec/simple_form"
+
+group :development, :test do
+	gem 'faker'
+	gem 'rspec-rails'
+	gem 'factory_girl_rails'
+	# gem 'capybara'
+	# gem 'capybara-webkit'
+	gem 'database_cleaner'
+	# gem 'spork', '~> 1.0rc'
+end
+
+group :development do
+	# gem 'letter_opener'
+	gem 'hirb'
+	gem 'interactive_editor'
+	gem 'awesome_print'
+	# gem 'better_errors'
+	# gem 'binding_of_caller'
+end
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

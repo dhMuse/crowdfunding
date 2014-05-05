@@ -1,0 +1,17 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      = @campaign.title
+    .modal-body
+      %p
+        Details:  #{@campaign.details}
+      %p
+        Funding target: #{@campaign.target}
+      %p
+        End date: #{@commentable.end_date}
+      %p{class: label_class(@commentable.state)}
+        = @commentable.state.capitalize
+      %hr
+        = render "/comments/listing_with_new"
+    .modal-footer
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} Close

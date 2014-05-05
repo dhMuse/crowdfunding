@@ -1,0 +1,6 @@
+$("#signin-modal").modal('hide');
+$("#flash-messages").hide();
+$("#flash-messages").html("#{j flash_messages}");
+$("#flash-messages").fadeIn(1000);
+setTimeout(function(){$("#flash-messages").fadeOut(1500)}, 4000);
+$("#user-info").html("#{j render '/layouts/user_info'}");

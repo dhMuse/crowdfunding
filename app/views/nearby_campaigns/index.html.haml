@@ -1,0 +1,14 @@
+%div{style: "width: 800px;"}
+  #map{style: "width: 800px; height: 400px;"}
+
+- markers = generate_gmap4rails_markers(@nearby_campaigns)
+
+:javascript
+  $(document).ready(function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(#{markers.to_json});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  });

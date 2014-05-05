@@ -1,0 +1,16 @@
+.col-md-9.col-sm-9
+  %h2= @commentable.title
+  %p= @commentable.details
+  %div
+    = @commentable.label_class
+    = @commentable.state
+  %p= @commentable.target
+  %p= @commentable.end_date
+  %hr
+  = render "/comments/listing_with_new"
+.col-md-3.col-sm-3
+  - @campaign.reward_levels.each do |rl|
+    .well
+      %h4= rl.title
+      %p $ #{rl.amount}
+      %p= rl.details

@@ -1,0 +1,14 @@
+- if @campaign.errors.has_key?(:base)
+  .alert.alert-danger= @campaign.errors[:base].join(", ")
+
+= simple_form_for @campaign, html: {class: "form-horizontal"} do |f|
+  = f.input :title
+  = f.input :details
+  = f.input :target
+  = f.input :address
+  = f.input :end_date
+  %hr
+  = f.fields_for :reward_levels do |rl|
+    = render "reward_level_fields", f: rl
+  = link_to_add_fields("Add Reward Level", f, :reward_levels)
+  = f.submit "Submit", class: "btn btn-primary"

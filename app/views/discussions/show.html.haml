@@ -1,0 +1,16 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @discussion.title
+%p
+  %b Body:
+  = @discussion.body
+
+= link_to 'Edit', edit_discussion_path(@discussion)
+\|
+= link_to 'Back', discussions_path
+
+%hr
+
+= render "/comments/listing_with_new"
