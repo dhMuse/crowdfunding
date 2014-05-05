@@ -1,4 +1,5 @@
 class Api::V1::CampaignsController < ApplicationController
+  before_action :restrict_access
   
   def index
     @campaigns = Campaign.paginate(page: params[:page], per_page: 12)
@@ -7,5 +8,12 @@ class Api::V1::CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
+  end
+
+  private
+
+  def restrict_access
+    api_key = ApiKey.find_by_access_token(params[:access_token])
+    head :unauthorized unless api_key
   end
 end
