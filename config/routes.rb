@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :reward_levels, only: [] do
+    resources :orders
+  end
+
   # get 'nearby_campaigns/index'
   resources :nearby_campaigns, only: :index
 

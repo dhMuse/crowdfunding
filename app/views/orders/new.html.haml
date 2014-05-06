@@ -1,0 +1,22 @@
+%h1 Pledge $#{@reward_level.amount} towards #{@reward_level.campaign_title}
+
+#stripe-error
+
+- if @order.errors[:base].present?
+  .alert.alert-danger= @order.errors[:base].join(", ")
+
+- if current_user.stripe_customer_id
+  = simple_form_for [@reward_level, @order] do |f|
+    =# f.input :stripe_card_token, as: :hidden, input_html: {value: ""}
+    .well
+      = current_user.stripe_card_type
+      **** **** **** #{current_user.stripe_card_last4}
+      = f.submit "Charge this card", class: "btn btn-primary"
+-else
+  = simple_form_for [@reward_level, @order] do |f|
+    = f.input :stripe_card_token, as: :hidden
+    = f.input :card_number
+    = f.input :cvc
+    = f.input :card_month, as: :date, order: [:month]
+    = f.input :card_year, as: :date, order: [:year], start_year: Date.today.year, end_year: Date.today.year + 8
+    = f.submit "Pledge!", class: "btn btn-primary"

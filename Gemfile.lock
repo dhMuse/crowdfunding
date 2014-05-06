@@ -132,6 +132,8 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     request_store (1.0.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -166,6 +168,10 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     state_machine (1.2.0)
+    stripe (1.11.0)
+      json (~> 1.8.1)
+      mime-types (~> 1.25)
+      rest-client (~> 1.4)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -222,6 +228,7 @@ DEPENDENCIES
   simple_form!
   spring
   state_machine
+  stripe
   thin
   turbolinks
   uglifier (>= 1.3.0)
